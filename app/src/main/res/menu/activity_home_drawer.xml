@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:iconTint="@android:color/white"
+            android:title="HOME" />
+        <item
+            android:id="@+id/nav_sell"
+            android:icon="@drawable/ic_menu_gallery"
+            android:iconTint="@android:color/white"
+            android:title="SELL" />
+        <item
+            android:id="@+id/nav_buy"
+            android:iconTint="@android:color/white"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="BUY" />
+        <item
+            android:id="@+id/nav_donate"
+            android:iconTint="@android:color/white"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="DONATE" />
+        <item
+            android:id="@+id/nav_cart"
+            android:iconTint="@android:color/white"
+            android:icon="@drawable/ic_shopping_cart_black_24dp"
+            android:title="CART" />
+        <item
+            android:id="@+id/nav_orders"
+            android:iconTint="@android:color/white"
+            android:icon="@drawable/ic_access_time_black_24dp"
+            android:title="ORDERS" />
+        <item
+            android:id="@+id/nav_logout"
+            android:iconTint="@android:color/white"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="LOGOUT" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:iconTint="@android:color/white"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+
+        </menu>
+    </item>
+
+</menu>

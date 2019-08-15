@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/z"
+    android:padding="10dp"
+    android:layout_margin="30dp"
+    android:orientation="horizontal"
+    tools:context=".Buy">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sell"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/haha"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_below="@+id/haha"
+            android:layout_marginTop="0dp"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sell1"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/click_here"
+            android:id="@+id/txtv"
+            android:textSize="20sp"/>
+
+
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>

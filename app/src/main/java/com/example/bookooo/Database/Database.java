@@ -41,6 +41,8 @@ public class Database extends SQLiteAssetHelper {
                           c.getString(c.getColumnIndex("Quantity")),
                           c.getString(c.getColumnIndex("Price")),
                           c.getString(c.getColumnIndex("Discount"))
+
+
                ));
             }while (c.moveToNext());
         }
@@ -54,7 +56,8 @@ public class Database extends SQLiteAssetHelper {
                 order.getProductName(),
                 order.getQuantity(),
                 order.getPrice(),
-                order.getDiscount());
+                order.getDiscount()
+                );
         db.execSQL(query);
     }
 
@@ -63,5 +66,21 @@ public class Database extends SQLiteAssetHelper {
         String query = String.format("DELETE FROM OrderDetail");
         db.execSQL(query);
     }
+
+    public int getCountCart() {
+        int count=0;
+        SQLiteDatabase db = getReadableDatabase();
+        String query = String.format("SELECT COUNT(*) FROM OrderDetail");
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst())
+        {
+           do {
+               count = cursor.getInt(0);
+           }while (cursor.moveToNext());
+        }
+        return count;
+    }
+
+
 }
 

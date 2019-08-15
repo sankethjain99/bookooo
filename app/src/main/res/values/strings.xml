@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name">bookoo</string>
+    <string name="app_name">BooKoo</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Home</string>
     <string name="navigation_drawer_close">Home</string>
+    <string name="click_here">Click <a href="www.google.com">here</a> to sell your book at great prises</string>
+    <string name="about">Our Vision\n\n
+Build a platform to enable students to work with ease, eliminate stress and meet their expectations\n\n
+
+Our Promise\n\n
+We deliver top quality books,  simple and convenient services at best prices to our community of smart hardworking and passionate students\n
+\n
+Our Mission\n\n
+To ensure that every Student is made available to the resources required to achieve their goals, fulfill their wishes and make history.\n</string>
+    <string name="me">\n\n\n\n\n- love,\n Sanketh Jain</string>
+    <string name="sell">Do justice to your old books.\n Make it worth by Selling  them at reasonable prices.\n\n</string>
+
+    <string name="sell1">-Head to the sell page, pick the corresponding branch and year.\n\n
+        -Go through the books and select the book of your choice. \n\n
+        -Upload a picture and verify the price. Once we verify the upload, the book will be put on our wait list to be sold.\n
+    </string>
 </resources>

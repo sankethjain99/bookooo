@@ -2,6 +2,7 @@ package com.example.bookooo;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.bookooo.ViewHolder.BookViewHolder;
+import com.example.bookooo.common.common;
 import com.example.bookooo.interfac.itemClickListener;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +41,7 @@ public class BookList extends AppCompatActivity {
     FirebaseRecyclerAdapter<Book, BookViewHolder> searchadapter;
     List<String> suggestList = new ArrayList<>();
     MaterialSearchBar materialSearchBar;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +56,48 @@ public class BookList extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(getIntent() !=null)
+                    CategoryId = getIntent().getStringExtra("CategoryId");
+                if(!CategoryId.isEmpty() && CategoryId !=null){
+                    if (common.isConnectedToInternet(getBaseContext()))
+                        loadListBook(CategoryId);
+                    else
+                    {
+                        Toast.makeText(BookList.this, "Check your Connection", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+        });
+
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                if(getIntent() !=null)
+                    CategoryId = getIntent().getStringExtra("CategoryId");
+                if(!CategoryId.isEmpty() && CategoryId !=null){
+                    if (common.isConnectedToInternet(getBaseContext()))
+                        loadListBook(CategoryId);
+                    else
+                    {
+                        Toast.makeText(BookList.this, "Check your Connection", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+        });
 
 
-        if(getIntent() !=null)
-            CategoryId = getIntent().getStringExtra("CategoryId");
-        if(!CategoryId.isEmpty() && CategoryId !=null){
-            loadListBook(CategoryId);
-        }
+
+
 
         materialSearchBar = (MaterialSearchBar)findViewById(R.id.searchBar);
         materialSearchBar.setHint("Enter book");
@@ -115,7 +153,7 @@ public class BookList extends AppCompatActivity {
                 Book.class,
                 R.layout.book_item,
                 BookViewHolder.class,
-                bookList.orderByChild("Name").equalTo(text.toString())
+                bookList.orderByChild("name").equalTo(text.toString())
         ) {
             @Override
             protected void populateViewHolder(BookViewHolder viewHolder, Book model, int position) {
@@ -127,7 +165,7 @@ public class BookList extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent bookDetail = new Intent(BookList.this,BookDetail.class);
-                        bookDetail.putExtra("BookId",searchadapter.getRef(position).getKey());
+                        bookDetail.putExtra("bookId",searchadapter.getRef(position).getKey());
                         startActivity(bookDetail);
                     }
                 });
@@ -137,7 +175,7 @@ public class BookList extends AppCompatActivity {
     }
 
     private void loadSuggest() {
-        bookList.orderByChild("MenuId").equalTo(CategoryId)
+        bookList.orderByChild("menuId").equalTo(CategoryId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -156,7 +194,7 @@ public class BookList extends AppCompatActivity {
     }
 
     private void loadListBook(String categoryId) {
-        adapter = new FirebaseRecyclerAdapter<Book, BookViewHolder>(Book.class,R.layout.book_item,BookViewHolder.class,bookList.orderByChild("MenuId").equalTo(CategoryId)) {
+        adapter = new FirebaseRecyclerAdapter<Book, BookViewHolder>(Book.class,R.layout.book_item,BookViewHolder.class,bookList.orderByChild("menuId").equalTo(CategoryId)) {
             @Override
             protected void populateViewHolder(BookViewHolder viewHolder, Book model, int position) {
                 viewHolder.book_name.setText(model.getName());
@@ -167,7 +205,7 @@ public class BookList extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         Intent bookDetail = new Intent(BookList.this,BookDetail.class);
-                        bookDetail.putExtra("BookId",adapter.getRef(position).getKey());
+                        bookDetail.putExtra("bookId",adapter.getRef(position).getKey());
                         startActivity(bookDetail);
                     }
                 });
@@ -177,5 +215,6 @@ public class BookList extends AppCompatActivity {
 
 
         recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

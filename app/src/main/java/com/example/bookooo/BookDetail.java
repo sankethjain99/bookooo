@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.bookooo.Database.Database;
+import com.example.bookooo.common.common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +57,8 @@ public class BookDetail extends AppCompatActivity {
                         currentBook.getPrice(),
                         currentBook.getDiscount()
 
+
+
                 ));
 
                 Toast.makeText(BookDetail.this, "Added To Cart", Toast.LENGTH_SHORT).show();
@@ -74,9 +77,14 @@ public class BookDetail extends AppCompatActivity {
 
 
         if (getIntent() != null)
-            bookId = getIntent().getStringExtra("BookId");
+            bookId = getIntent().getStringExtra("bookId");
         if (!bookId.isEmpty()){
-            getDetailBook(bookId);
+            if (common.isConnectedToInternet(getBaseContext()))
+                getDetailBook(bookId);
+            else {
+                Toast.makeText(this, "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
     }
 

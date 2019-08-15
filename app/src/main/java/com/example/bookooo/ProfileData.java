@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-
+import com.example.bookooo.common.common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,33 +44,36 @@ public class ProfileData extends AppCompatActivity {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog mDialog = new ProgressDialog(ProfileData.this);
-                mDialog.setMessage("loading...");
-                mDialog.show();
+                if (common.isConnectedToInternet(getBaseContext())) {
+                    final ProgressDialog mDialog = new ProgressDialog(ProfileData.this);
+                    mDialog.setMessage("loading...");
+                    mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists())
-                        {
-                            mDialog.dismiss();
-                            Toast.makeText(ProfileData.this,"Phone number already registered",Toast.LENGTH_SHORT).show();
+                    table_user.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                                mDialog.dismiss();
+                                Toast.makeText(ProfileData.this, "Phone number already registered", Toast.LENGTH_SHORT).show();
+                            } else {
+                                mDialog.dismiss();
+                                User user = new User(edtName.getText().toString(), edtPassword.getText().toString());
+                                table_user.child(edtPhone.getText().toString()).setValue(user);
+                                Toast.makeText(ProfileData.this, "Signup sucessful", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
                         }
-                        else {
-                            mDialog.dismiss();
-                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(user);
-                            Toast.makeText(ProfileData.this,"Signup sucessful",Toast.LENGTH_SHORT).show();
-                            finish();
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
                         }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                    });
+                } else {
+                    Toast.makeText(ProfileData.this, "Check your Conection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
         });
 

@@ -22,7 +22,7 @@
             android:id="@+id/edtPhone"
             android:hint="Phone Number"
             android:textColorHint="@color/fbutton_color_orange"
-            android:text="8073583638"
+            android:text=""
             android:textSize="24sp"
             android:inputType="phone"
             app:met_baseColor="@color/fbutton_color_alizarin"
@@ -32,14 +32,11 @@
             app:met_singleLineEllipsis="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-
-
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtPassword"
             android:hint="Password"
             android:textColorHint="@color/fbutton_color_orange"
-            android:text="81234"
+            android:text=""
             android:textSize="24sp"
             android:inputType="textPassword"
             app:met_baseColor="@color/fbutton_color_alizarin"
@@ -50,12 +47,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <com.rey.material.widget.CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Material.Drawable.CheckBox"
+            android:text="Remember Me"
+            android:id="@+id/ckbRemember"
+            android:textColor="@color/fbutton_color_orange"
+            app:cbd_strokeColor="@android:color/white"
+            app:cbd_tickColor="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:checked="true"
+            />
+
+
 
 
 
     </LinearLayout>
 
-    <info.hoang8f.widget.FButton
+    <Button
         android:layout_width="match_parent"
         android:id="@+id/btnSignIn"
         android:textColor="@android:color/white"
@@ -63,7 +74,8 @@
         android:layout_marginLeft="8dp"
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp"
-        app:shadowColor="@android:color/black"
+        android:background="@color/colorPrimary"
+
 
         android:text="Sign In"
 

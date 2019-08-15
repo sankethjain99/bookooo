@@ -9,12 +9,17 @@
 
 
     <LinearLayout
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         android:orientation="horizontal"
         android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/cart_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
 
 
         <LinearLayout

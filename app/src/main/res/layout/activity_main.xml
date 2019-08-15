@@ -31,9 +31,9 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="350dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="300dp"
             android:src="@drawable/ll" />
 
         <TextView
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="400dp"
             android:layout_marginLeft="20dp"
-            android:text="welcome!!"
+            android:text="BooKoo"
             android:textSize="20dp" />
     </LinearLayout>
 
@@ -62,7 +62,7 @@
             android:layout_margin="8dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@color/colorPrimary"
 
             android:shadowRadius="@android:integer/config_shortAnimTime"
 
@@ -79,7 +79,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@color/colorPrimary"
             android:shadowRadius="@android:integer/config_shortAnimTime"
             android:text="Sign In"
             android:textColor="@android:color/white" />

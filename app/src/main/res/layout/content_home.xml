@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Home"
+    android:background="@drawable/z"
     tools:showIn="@layout/app_bar_home">
 
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/recycler_menu"
-        android:scrollbars="vertical"
-        >
+        android:layout_height="wrap_content">
+        
+        <com.daimajia.slider.library.SliderLayout
+            android:layout_marginTop="5dp"
+            android:id="@+id/slider"
+            android:layout_marginBottom="5dp"
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </com.daimajia.slider.library.SliderLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
 
-    </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+        
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

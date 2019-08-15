@@ -22,7 +22,7 @@
         <item
             android:id="@+id/nav_donate"
             android:iconTint="@android:color/white"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_sentiment_very_satisfied_black_24dp"
             android:title="DONATE" />
         <item
             android:id="@+id/nav_cart"
@@ -41,14 +41,13 @@
             android:title="LOGOUT" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="About">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_about"
                 android:iconTint="@android:color/white"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-
+                android:icon="@drawable/ic_accessibility_black_24dp"
+                android:title="About" />
         </menu>
     </item>
 
